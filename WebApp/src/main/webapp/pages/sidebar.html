@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="../js/sidebar.js" type="module"></script>
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById("sidebar");
+            if (sidebar.style.display === "none") {
+                sidebar.style.display = "block";
+            } else {
+                sidebar.style.display = "none";
+            }
+        }
+        document.getElementById("user-name").textContent = JSON.parse(localStorage.getItem("userData")).name
+        document.getElementById("role").textContent = JSON.parse(localStorage.getItem("userData")).role.role
+        document.getElementById("profile-pic").src = JSON.parse(localStorage.getItem("userData")).profilePicture ?? "../images/users.svg"
+    </script>
+</head>
+<body>
+<div id="sidebar">
+    <!-- Add a button with class "toggle-sidebar" -->
+    <button class="toggle-sidebar" onclick="toggleSidebar()">Toggle Sidebar</button>
+    <div class="sidebar-content">
+
+        <div class="logo-container">
+            <img src="../images/ic_semicolon.svg" alt="Logo">
+            <h3>Semicolon</h3>
+        </div>
+        <div class="profile-container">
+            <img id="profile-pic" alt="Profile Picture">
+            <div id="user-info" class="user-info">
+                <h5 id="user-name">John Doe</h5>
+                <p id="role">Web Developer</p>
+            </div>
+        </div>
+        <div class="general-section">
+            <span id="hidden-content" style="display: none"></span>
+            <h4>General</h4>
+            <ul>
+                <!--the id and the href tag should be the same so on reload we could have the selected li-->
+                <li id="receipt"><a href="#receipt"><img src="../images/report_reciept.svg" alt="Icon 1"> Receipt </a></li>
+                <li id="drug"><a href="#drug"><img src="../images/products.svg" alt="Icon 2"> Drug </a></li>
+                <li id="material"><a href="#material"><img src="../images/products.svg" alt="Icon 2"> Material </a></li>
+                <li id="storage"><a href="#storage"><img src="../images/storage.svg" alt="Icon 3"> Storage </a></li>
+                <li id="order"><a href="#order"><img src="../images/orders.svg" alt="Icon 4"> Orders </a></li>
+                <li id="supplier"><a href="#supplier"><img src="../images/supplier.svg" alt="Icon 5"> Suppliers </a></li>
+                <li id="orReo"><a href="#order_report"><img src="../images/report_reciept.svg" alt="Icon 6"> Order Report </a></li>
+                <li id="reRep"><a href="#receipt_report"><img src="../images/report_reciept.svg" alt="Icon 6"> Receipt Report </a></li>
+            </ul>
+        </div>
+        <div class="settings-section">
+            <h4>Settings</h4>
+            <ul>
+                <li id="user"><a href="#user"><img src="../images/users.svg" alt="Settings Icon 1"> Users </a></li>
+                <li id="profile"><a href="#profile"><img src="../images/setting.svg" alt="Settings Icon 2"> Profile </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>

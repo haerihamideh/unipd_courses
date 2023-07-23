@@ -1,0 +1,30 @@
+<style>
+    .table td:first-child{width: 5px!important;;}
+</style>
+<div class="container">
+
+    <h2 class="h2 mb-5 mt-4">Receipt</h2>
+    <div class="form-row mb-4">
+        <div class="col-auto">
+            <a href="#add-receipt" class="btn btn-custom"> Add Receipt </a>
+        </div>
+    </div>
+
+    <!-- Filters -->
+
+
+    <div id='tbl' class="border rounded-xl bg-white" onload="alert('ttt')">
+
+    </div>
+</div>
+<script src="../js/receipt_list.js" type="module"></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>-->
+<script type="module">
+    import {onInitial} from "../js/receipt_list.js";
+    onInitial()
+    // $(window).on("hashchange load", () => {
+    //     // import "../js/table/fancyTable.js"
+    // })
+
+
+</script>

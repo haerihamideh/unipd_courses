@@ -1,0 +1,88 @@
+table {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 100%;
+    white-space: nowrap;
+    background-color: #f8f8f8;
+    border-radius: 2% !important;
+    overflow: hidden;
+}
+
+table th, table td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+table th {
+    background-color: whitesmoke !important;
+    color: black !important;
+    white-space: nowrap;
+}
+
+table tr:hover {
+    background-color: #f5f5f5;
+}
+
+@media screen and (max-width: 1000px) {
+    table {
+        overflow-x: auto !important; /* Add horizontal scrollbar */
+    }
+
+    table tr, table td, table th {
+        border: none;
+    }
+
+    table th {
+        background-color: whitesmoke;
+        color: white;
+        border: none;
+    }
+
+    table td {
+        border: none;
+        text-align: right;
+        padding-right: 30px;
+        position: relative;
+    }
+
+    table td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        width: 30%;
+        padding-left: 8px;
+        font-weight: bold;
+        text-align: left;
+    }
+}
+
+.search-box {
+    margin-bottom: 20px;
+}
+
+.add-btn {
+    margin-bottom: 20px;
+}
+
+@media (max-width: 576px) {
+    .search-box {
+        margin-bottom: 10px;
+    }
+
+    .add-btn {
+        margin-bottom: 10px;
+    }
+}
+
+/*th {*/
+/*    background-color: #42C3AA;*/
+/*    border-radius:1px !important;*/
+/*    color: black;*/
+/*}*/
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}

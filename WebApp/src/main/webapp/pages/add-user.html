@@ -1,0 +1,114 @@
+<div class="container">
+  <h2 class="h2 mb-5 mt-4">User</h2>
+  <div id="error-message"></div>
+  <form id="add-user-form" class="card rounded-xl">
+    <div class="card-body p-4">
+      <div class="row align-items-end">
+        <!-- Avatar -->
+        <div class="col-md-1 col-4 offset-4 offset-md-0">
+          <label class="w-100 mb-3 mt-3 bg-secondary rounded">
+            <img id="add-avatar-preview" src="../images/users.svg" alt="User Avatar" class="w-100" />
+            <input id="profilePicture" name="profilePicture" type="file" class="d-none" accept="image/*">
+          </label>
+        </div>
+        <!--username-->
+        <div class="col-md-3">
+          <div class="form-group">
+            <label class="form-label">Username :</label>
+            <input name="username" type="text" class="form-control" placeholder="Username" required />
+          </div>
+        </div>
+        <!--pass-->
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="form-label">Password :</label>
+            <input name="password" type="password" class="form-control" placeholder="Password" required />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <!-- Name -->
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="form-label">Name :</label>
+            <input name="name" type="text" class="form-control" placeholder="Name" required />
+          </div>
+        </div>
+        <!-- Last Name -->
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="form-label">Last Name :</label>
+            <input name="lastName" type="text" class="form-control" placeholder="Last Name" required />
+          </div>
+        </div>
+        <!-- Birth Date -->
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="form-label">Birth Date :</label>
+            <input name="birthDate" type="date" class="form-control" required />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <!-- Gender -->
+        <div class="col-md-2">
+          <div class="form-group">
+            <label class="form-label">Gender :</label>
+            <select name="gender" class="form-control" required>
+              <option value="" selected disabled>Gender</option>
+              <option value="MALE">Male</option>
+              <option value="FEMALE">Female</option>
+              <option value="UNISEX">Non binary</option>
+            </select>
+          </div>
+        </div>
+        <!-- Role -->
+        <div class="col-md-2">
+          <div class="form-group">
+            <label class="form-label">Role :</label>
+            <select name="role" class="form-control" required>
+              <option value="" selected disabled>Role</option>
+              <!-- Options will be dynamically generated here -->
+            </select>
+          </div>
+        </div>
+        <!-- Phone Number -->
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="form-label">Phone Number :</label>
+            <input name="phoneNumber" type="text" class="form-control" placeholder="Phone Number" required/>
+          </div>
+        </div>
+        <!-- Email -->
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="form-label">Email :</label>
+            <input name="email" type="email" class="form-control" placeholder="Email" />
+          </div>
+        </div>
+      </div>
+      <!-- Address -->
+      <div class="form-group">
+        <label class="form-label">Address :</label>
+        <input name="address" type="text" class="form-control" placeholder="Address" />
+      </div>
+    </div>
+    <hr class="border border-1 opacity-100 m-0" />
+    <div class="card-body p-4">
+      <div class="row">
+        <div class="col-md-2 offset-md-8 mb-3 mb-md-0">
+          <button type="submit" class="btn btn-custom w-100">Add</button>
+        </div>
+
+        <div class="col-md-2 order-md-first">
+          <a href="#user" class="btn btn-custom-secondary w-100">Cancel</a>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<script src="../js/addUser.js" type="module"></script>
+<script type="module">
+  import {onInitial} from "../js/addUser.js";
+  onInitial();
+</script>

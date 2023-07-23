@@ -1,0 +1,31 @@
+@import url('./constants/colors.css');
+body {
+    background-color: var(--background-color);
+    font-family: 'Raleway', sans-serif;
+}
+
+.btn-custom {
+    color: white;
+    border-color: var(--primary-color);
+    background-color: var(--primary-color) !important;
+    color: whitesmoke;
+}
+
+.btn-custom:hover {
+    color: white;
+    border-color: var(--primary-hover-color);
+    background-color: var(--primary-hover-color) !important;
+    box-shadow: none;
+}
+
+.btn-custom-secondary{
+    background-color: var(--gray-color);
+}
+
+.rounded-xl{
+    border-radius: 16px;
+}
+
+.table td:first-child {
+    width: 5px !important;
+}

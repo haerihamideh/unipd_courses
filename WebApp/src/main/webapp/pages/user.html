@@ -1,0 +1,27 @@
+<style>
+    .table td:first-child{width: 5px!important;;}
+</style>
+<div class="container">
+
+    <h2 class="h2 mb-5 mt-4">Users</h2>
+    <div class="form-row mb-4">
+        <div class="col-auto">
+            <a href="#add-user" class="btn btn-custom"> Add User </a>
+        </div>
+    </div>
+
+  <!-- Filters -->
+
+
+    <div id='tbl' class="border rounded-xl bg-white" onload="alert('ttt')">
+
+    </div>
+</div>
+<script src="../js/user.js" type="module"></script>
+<script type="module">
+    import {onInitial} from "../js/user.js";
+    onInitial()
+
+
+
+</script>

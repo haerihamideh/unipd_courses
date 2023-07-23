@@ -1,0 +1,182 @@
+<!DOCTYPE>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Product</title>
+    <link href="../css/add-product.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+    <script type="module" src="../js/addToStorage.js"></script>
+</head>
+
+<body>
+<div class="container">
+    <h2 class="h2 mb-5 mt-4">Add Product</h2>
+    <!-- Filters -->
+    <form id="filterForm">
+        <div class="form-row mb-4">
+
+            <!-- Product list -->
+            <div class="col-md-3">
+                <select id="product-list" class="form-control">
+                </select>
+            </div>
+
+            <!-- Threshold -->
+            <div class="col-md-3">
+                <input id="threshold" class="form-control" placeholder="Threshold">
+            </div>
+
+
+            <!-- Amount -->
+            <div class="col-md-3">
+                <input id="amount" class="form-control" placeholder="Amount">
+            </div>
+
+
+            <!-- Amount -->
+            <div class="col-md-2">
+                <input id="discount" class="form-control" placeholder="Discount">
+            </div>
+
+
+            <!-- Filter Button -->
+            <div class="col-auto">
+                <button id="add-product-storage" class="btn btn-custom" type="submit">Add</button>
+            </div>
+        </div>
+    </form>
+
+    <div id='tbl' class="border rounded-xl bg-white">
+        <!-- Dynamically generate table using drug data -->
+    </div>
+    <div class="d-flex flex-wrap">
+        <button class="btn-custom-secondary outline-0 border-0 rounded p-2 my-1 col-md-2 col-12" id="cancel-btn">
+            Cancel
+        </button>
+        <button type="submit" class="btn btn-custom ml-auto p-2 my-1 col-md-2 col-12" id="add-storage-btn">Add</button>
+    </div>
+</div>
+<script type="module">
+    import storageUrls from "../js/urls/storageUrls.js";
+    import {createGenericTable} from "../js/table/table.js";
+    import {oninitial} from "../js/addToStorage.js";
+
+    oninitial();
+
+    const drug = [];
+    const material = [];
+    let amount;
+    let threshold;
+    let discount;
+
+
+    function redirectToPage() {
+        const url = `index.html?`;
+        $("#main-content").load(url, function (response, status, xhr) {
+            if (status == "success") {
+                console.log("Content loaded successfully");
+            } else {
+                console.log("Error loading content: " + xhr.status + " " + xhr.statusText);
+            }
+        });
+        $(document).ready(function () {
+            $("#sidebar-html").load("sidebar.html");
+        });
+    }
+
+    document.getElementById("add-storage-btn").addEventListener("click", function () {
+
+        const body = {
+            pharmacyId: 1,
+
+            materialId: material,
+            drugId: drug,
+            amount: amount,
+            threshold: threshold,
+            discount: discount
+        }
+
+        const token = localStorage.getItem("token");
+
+        console.log(body);
+        const router = new Router();
+        router.createFetch(storageUrls.ADD,
+            null,
+            null,
+            token,
+            body).then(
+            data => {
+                console.log("yes", data);
+            }
+        ).catch(er => {
+            console.log(er)
+        });
+
+    });
+
+
+    document.getElementById("add-product-storage").addEventListener("click", function () {
+        console.log("A")
+
+        let selectValue = $("#product-list option:selected").text();
+        console.log("name: ", selectValue)
+        // alert(selectValue)
+        let amountValue = document.getElementById("amount").value;
+        console.log("amount: ", amountValue)
+        amount = amountValue;
+        // alert(amountValue)
+        let thresholdValue = document.getElementById("threshold").value;
+        console.log("threshold: ", thresholdValue)
+        threshold = thresholdValue;
+
+        let discountValue = document.getElementById("discount").value;
+        console.log("discount: ", thresholdValue);
+        discount = discountValue;
+
+        const selectElement = document.getElementById('product-list');
+        const selectedValue = selectElement.value;
+        const [productId, pType] = selectedValue.split('|');
+        console.log("select value: ", selectedValue);
+
+        if (pType == "drug") {
+            drug.push(productId);
+        } else if (pType == "material") {
+            material.push(productId);
+        }
+        // alert(thresholdValue)
+
+        const receiptData = [];
+        console.log("2222")
+        const dataOfTheTable = receiptData.push({
+            Name: selectValue,
+            amount: amountValue,
+            threshold: thresholdValue,
+            discount: discountValue
+        })
+        console.log(dataOfTheTable)
+
+        const elem = document.getElementById('storage-list');
+        const newRow = document.querySelector('tr')
+        if (newRow) {
+
+        }
+
+        // Re-render the table with the new data
+        createGenericTable(
+            "storage-list",
+            ["Name", "threshold", "amount", "discount"],
+            receiptData,
+            null,
+            "default"
+        );
+    });
+
+</script>
+</body>
+</html>
+

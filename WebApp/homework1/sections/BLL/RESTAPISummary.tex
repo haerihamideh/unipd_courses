@@ -1,0 +1,175 @@
+\subsection{REST API Summary}
+
+%describe the REST API. If needed, add a few lines of text here, describing the content of the table.
+We used Swagger UI to document our REST API. Swagger is an open-source tool that can help developers design, build, and document RESTful APIs. With Swagger UI, APIs can be easily tested and explored using a user-friendly interface. Additionally, it can generate interactive documentation that can be shared with other developers. The following table shows the URIs, HTTP methods, and descriptions for each endpoint in our API:
+\begin{longtable}{|p{.375\columnwidth}|p{.1\columnwidth} |p{.35\columnwidth}|p{.1\columnwidth}|} 
+\hline
+\textbf{URI} & \textbf{Method} & \textbf{Description}
+\\\hline
+user/{id} &
+GET &
+This API endpoint retrieves the details of a specific user based on their unique ID.
+\\\hline
+user/{id} &
+PUT &
+This API endpoint allows for updating the information of a specific user based on their unique ID.
+\\\hline
+user &
+GET &
+This API endpoint retrieves a list of all users stored in the system.
+\\\hline
+user &
+POST &
+This API endpoint allows for the creation of a new user in the system.
+\\\hline
+user/change-status/{id}/{newStatus} &
+PATCH &
+This API endpoint allows for changing the status of a specific user based on their unique ID.
+\\\hline
+user/delete/{id} &
+DELETE &
+This API endpoint allows for deleting a specific user based on their unique ID.
+\\\hline
+supplier/{id} &
+GET &
+This API endpoint retrieves the details of a specific supplier based on their unique ID.
+\\\hline
+supplier/{id} &
+PUT &
+This API endpoint allows for updating the information of a specific supplier based on their unique ID.
+\\\hline
+supplier/{id} &
+DELETE &
+This API endpoint allows for deleting a specific supplier based on their unique ID.
+\\\hline
+supplier &
+POST &
+This API endpoint allows for the creation of a new supplier in the system. 
+\\\hline
+storage/{id} &
+GET &
+This API endpoint retrieves the details of a specific storage based on its unique ID.
+\\\hline
+storage/{id} &
+PUT &
+This API endpoint allows for updating the information of a specific storage based on its unique ID. 
+\\\hline
+storage/{id} &
+DELETE &
+This API endpoint allows for deleting specific storage based on its unique ID.
+\\\hline
+storage &
+GET &
+This API endpoint retrieves the list of all storage available in the system.
+\\\hline
+storage &
+POST &
+This API endpoint allows for creating new storage in the system. 
+\\\hline
+receipt/{id} &
+GET &
+This API endpoint retrieves the details of a specific receipt identified by the given ID.
+\\\hline
+receipt/{id} &
+PUT &
+This API endpoint updates the details of a specific receipt identified by the given ID.
+\\\hline
+receipt &
+POST &
+This API endpoint allows for creating a new receipt in the system. 
+\\\hline
+pharmacy/{id} &
+GET &
+This API endpoint retrieves the details of a specific pharmacy based on its unique ID.
+\\\hline
+pharmacy/{id} &
+PUT &
+This API endpoint allows for updating the information of a specific pharmacy based on its unique ID.
+\\\hline
+pharmacy/{id} &
+DELETE &
+This API endpoint allows for deleting a specific pharmacy based on its unique ID.
+\\\hline
+pharmacy/{id}/add-staff &
+PUT &
+This API endpoint allows for adding a new staff member to a specific pharmacy based on its unique ID. 
+\\\hline
+pharmacy &
+GET &
+This API endpoint retrieves a list of all pharmacies stored in the system.
+\\\hline
+pharmacy &
+POST &
+This API endpoint allows for the creation of a new pharmacy in the system. 
+\\\hline
+pharmacy/{pharmacyId} &
+PATCH &
+This API endpoint allows for updating the information of a specific pharmacy activation status based on its unique ID. It also changes the staff status.
+\\\hline
+pharmacy/delete-staff &
+DELETE &
+This API endpoint allows for deleting a specific staff member from a pharmacy based on their unique ID.
+\\\hline
+material/{id} &
+GET &
+This API endpoint retrieves the details of a specific material based on its unique ID.
+\\\hline
+material/{id} &
+PUT &
+This API endpoint allows for updating the information of a specific material based on its unique ID. 
+\\\hline
+material &
+GET &
+This API endpoint retrieves a list of all materials stored in the system.
+\\\hline
+material &
+POST &
+This API endpoint allows for the creation of new material in the system.
+\\\hline
+drug/{id} &
+GET &
+This API endpoint retrieves the details of a specific drug based on its unique ID. 
+\\\hline
+drug/{id} &
+PUT &
+This API endpoint allows for updating the information of a specific drug based on its unique ID. 
+\\\hline
+drug &
+GET &
+This API endpoint retrieves a list of all drugs stored in the system.
+\\\hline
+drug &
+POST &
+This API endpoint allows for the creation of a new drug in the system.
+\\\hline
+order/save &
+POST &
+This API endpoint allows for saving a new order in the system.
+\\\hline
+order/status/{id}/{status} &
+PATCH &
+This API endpoint allows for updating the status of a specific order based on its unique ID.
+\\\hline
+order/getById/{id} &
+GET &
+This API endpoint retrieves the details of a specific order based on its unique ID.
+\\\hline
+order/get-all &
+GET &
+This API endpoint retrieves a list of all orders stored in the system.
+\\\hline
+order/delete/{id} &
+DELETE &
+This API endpoint allows for deleting a specific order based on its unique ID. 
+\\\hline
+account/{token} &
+POST &
+This API endpoint allows for creating a new account in the system or logging in to an existing account.
+\\\hline
+account &
+GET &
+This API endpoint retrieves the details of the authenticated user's account.
+\\\hline
+\caption{All the REST API Summaries describe in this table your REST API}
+\label{tab:termGlossary}
+\end{longtable}

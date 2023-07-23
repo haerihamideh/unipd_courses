@@ -1,0 +1,57 @@
+<div class="container">
+    <h2 class="h2 mb-5 mt-4">Drugs</h2>
+
+    <div class="form-row mb-4 ml-auto">
+        <a href="#add-product" class="btn btn-custom"> Add Drug </a>
+    </div>
+    <!-- Filters -->
+    <form id="filterForm">
+        <div class="form-row mb-4">
+
+            <!-- Drug -->
+            <div class="col">
+                <select id="filterAge" class="form-control">
+                    <option value="" disabled selected>Age Group</option>
+                    <option value="">All</option>
+                    <option value="NEWBORNS">NEWBORNS</option>
+                    <option value="INFANTS">INFANTS</option>
+                    <option value="CHILDREN">CHILDREN</option>
+                    <option value="ADOLESCENTS">ADOLESCENTS</option>
+                    <option value="YOUNG_ADULTS">YOUNG ADULTS</option>
+                    <option value="ADULTS">ADULTS</option>
+                    <option value="MIDDLE_AGED">MIDDLE AGED</option>
+                    <option value="AGED">AGED</option>
+                </select>
+            </div>
+
+            <!-- Sensitivity -->
+            <div class="col">
+                <select id="filterSensitivity" class="form-control">
+                    <option value="" disabled selected>Sensitivity</option>
+                    <option value="">All</option>
+                    <option value="true">Sensitive</option>
+                    <option value="false">Not Sensitive</option>
+                </select>
+            </div>
+
+
+            <!-- Filter Button -->
+            <div class="col-auto">
+                <button id="filterButton" class="btn btn-custom" type="submit">Filter</button>
+            </div>
+        </div>
+    </form>
+
+    <div id='tbl' class="border rounded-xl bg-white">
+        <!-- Dynamically generate table using drug data -->
+    </div>
+
+</div>
+
+<script src="../js/drug.js" type="module"></script>
+<script type="module">
+    import {onInitial} from "../js/drug.js";
+    onInitial();
+</script>
+
+
