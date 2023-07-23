@@ -1,0 +1,111 @@
+\section{Results and Discussion}
+\label{sec:results}
+
+\begin{figure}[htbp]
+  \centering
+  \begin{minipage}{0.45\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{figure/porter_s1.png}
+    \caption{Bar chart related to Porter stemmer 1}
+    \label{fig:Porter1_stem}
+  \end{minipage}\hfill
+  \begin{minipage}{0.45\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{figure/porter_s2.png}
+    \caption{Bar chart related to Porter stemmer 2}
+    \label{fig:Porter2_stem}
+  \end{minipage}
+\end{figure}
+
+In this section, we present the results and discussion of our study on the impact of different analyzers and similarity functions on retrieval performance for English and French data sets.
+
+We evaluated the performance of several analyzers and similarity functions using common performance metrics such as MAP, P@10, nDCG, and F-measure. Additionally, we analyzed the impact of different filters, synonym expansion techniques, and stemmers on the retrieval performance.
+
+The results of our study provide valuable insights into the impact of the analyzer and similarity function choice on the retrieval performance for English and French language scenarios. These insights can be helpful for system designers and researchers to optimize the retrieval tasks and improve the performance of retrieval systems. In the following sections, we will present the results and discussion separately for the English and French datasets.
+
+\subsection{English Dataset}
+
+\subsubsection{Performance of Different Analyzers and Similarity Functions}
+
+We evaluated a wide range of analyzers and similarity functions for the English dataset using standard performance metrics such as Mean Average Precision (MAP), Precision at 10 (P@10), Precision at 1000 (P@1000), Normalized Discounted Cumulative Gain (nDCG), and F-measure. The results showed that the overall performance of different analyzer and similarity function settings was quite similar, with most of them achieving MAP scores within the range of 0.1258 to 0.1488 and nDCG scores within the range of 0.2573 to 0.2934. 
+
+To further investigate the impact of stemmers on retrieval performance, we plotted two bar charts to show the performance of Porter Stemmer 1 (Figure \ref{fig:Porter1_stem}) and Porter Stemmer 2 (Figure \ref{fig:Porter2_stem}). As shown in Figure \ref{fig:Porter1&2_stem}, Porter Stemmer 2 achieved a higher MAP score compared to Porter Stemmer 1. The results in Feagure \ref{fig:Porter1&2_stem} demonstrate that Porter Stemmer 1 had a lower MAP score with a value of 0.1258. These bar charts provide valuable insights into the impact of different stemmers on retrieval performance in information retrieval systems.
+
+Also, we conducted a bar chart comparison between Porter Stemmer 1 and Porter Stemmer 2 to identify the optimal choice of stemmer. Figure \ref{fig:Porter1&2_stem} displays that Porter Stemmer 2 outperformed Porter Stemmer 1 in terms of retrieval performance, as it achieved a higher MAP score of 0.1488. This comparison highlights the importance of using an appropriate stemmer to optimize retrieval performance in information retrieval systems.
+
+Furthermore, we incorporated rank fusion as an approach to improve the overall retrieval performance. We utilized n-gram and Porter Stemmer runs, excluding the Dirichlet run, the synonymous run, and the Dirichlet run fused with other rankings (f\_used\_rankings\_porter2). 
+
+\begin{table}[h]
+\centering
+\caption{Rank Fusion Approaches and Performance Metrics}
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+\textbf{Rank Fusion Approach} & \textbf{MAP Score} & \textbf{P@10} & \textbf{nDCG} & \textbf{F-measure} \\
+\hline
+n-gram and Porter runs & 0.1541 & 0.0987 & 0.3016 & 0.0057 \\
+All runs except Dirichlet & 0.1516 & 0.0961 & 0.2981 & 0.0057 \\
+All runs & 0.1535 & 0.0982 & 0.3022 & 0.0058 \\
+All but not the syn and Dirich & 0.1547 & 0.1001 & 0.3016 & 0.0057 \\
+f\_used\_rankings\_porter2 & 0.1476 & 0.0954 & 0.2924 & 0.0093 \\
+\hline
+\end{tabular}
+\end{table}
+
+Based on these results, we can conclude that the rank fusion approach using all runs without synonyms and Dirichlet achieved the highest MAP score of 0.1547. This indicates that combining these specific runs can lead to improved retrieval performance in information retrieval systems.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=1\linewidth]{figure/comparison_prs1_prs2_ngram.png}
+  \caption{\centering Bar chart for comparison between Porter stemmer 1 and Porter stemmer 2 }
+  \label{fig:Porter1&2_stem}
+\end{figure}
+
+\subsubsection{Impact of Synonym Filters}
+
+We also evaluated different synonym filters for the English dataset, and the results showed a slight improvement in the nDCG score for some configurations, particularly for Porter2 stemmer with higher k1 values. However, their overall impact on other performance metrics such as P@10, P@1000, and F-measure was limited.
+
+\subsection{French Dataset}
+
+\subsubsection{Performance of Different Analyzers and Similarity Functions}
+
+We evaluated a total of 7 analyzers and similarity functions for the French dataset using standard performance metrics such as MAP, P@10, P@1000, nDCG, and F-measure. The results showed that the choice of analyzer and similarity function had a significant impact on the retrieval performance for the French dataset. Both `FrenchAnalyzer- with number stopword` and 'FrenchAnalyzer- with standard French stopword' were found to achieve the highest MAP value of 0.2132, while `MyFrenchAnalyzer- with using the snowball stemmer(porter2) and default stopword` recorded the lowest MAP value of 0.1894.
+ 
+
+\subsubsection{Impact of Analyzers and Stemmers}
+
+In addition to the choice of analyzers and similarity functions, we investigated the impact of stemmers on the performance of the French dataset. The results showed that analyzers had a greater impact on the performance of the French dataset than stemmers. For instance, `FrenchAnalyzer` was found to be more effective at improving the retrieval performance of the French dataset.
+
+Furthermore, we conducted a bar chart comparison between different analyzers for the French dataset (Figure \ref{fig:FR_measure}). The results indicated that the choice of analyzer had a significant impact on the retrieval performance for the French dataset. FrenchAnalyzer- with number stopword and FrenchAnalyzer- with standard French stopword both achieved the highest MAP value of 0.2132, while `MyFrenchAnalyzer- with using the snowball stemmer(porter2) and default stopword` recorded the lowest MAP value of 0.1894.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=1\linewidth]{figure/fr_comp_frnk.png}
+  \caption{\centering Bar chart for comparison between different analyzers and rank fusion in French }
+  \label{fig:FR_measure}
+\end{figure}
+
+These findings emphasize the importance of choosing an appropriate analyzer and stemmer for the French language to optimize retrieval performance in information retrieval systems. Moreover, it highlights the need for an in-depth study of various analyzers and stemmers to identify the optimal choice for French language scenarios. Also, after using rank fusion method for combining the runs we have similar runs according to the best MAP value but the results were lower than expected due to the low number of runs. However, the performance of this method works more on the English dataset so from table below you can see the result of the best runs and applying the rank fusion method on them.
+
+\begin{table}[h]
+\centering
+\caption{Rank Fusion Approach with Stopwords and Performance Metrics}
+\begin{tabular}{|l|c|}
+\hline
+\textbf{Performance Metric} & \textbf{Value} \\
+\hline
+MAP & 0.2129 \\
+P@10 & 0.1336 \\
+nDCG & 0.3807 \\
+F-Measure & 0.0107 \\
+\hline
+\end{tabular}
+\end{table}
+
+
+\subsection{Comparison between French and English Datasets}
+
+Comparing the results across the French and English datasets showed that there were significant differences in the optimal choice of analyzer and similarity function for the two languages. While Porter2 stemmer with higher k1 values and synonym filters showed a slight improvement in the nDCG score for the English dataset, the same configurations did not show a significant impact on the retrieval performance of the French dataset. Additionally, the comparison of the performance metrics across both datasets indicated that the retrieval performance of the French dataset was generally lower than that of the English dataset.
+
+To conclude our study, it provides insights into the significance of the choice of analyzer, similarity function, and other factors such as stemmers and synonym filters on search engine retrieval performance for English and French datasets. The findings could guide the development of advanced retrieval systems with enhanced accuracy and efficiency in diverse languages and domains. The comparative analysis of the French and English datasets also highlighted the importance of language-specific optimization of retrieval systems and the differences in the properties and structures of different languages. Further research could investigate other factors that could impact retrieval performance, such as query expansion techniques and machine learning algorithms.
+
+Overall, the results indicate that the optimal choice of analyzer and similarity function varies depending on the language and corpus under consideration. This study also highlighted the importance of considering the impact of different filters, synonym expansion techniques, and stemmers on retrieval performance in different languages, as these factors can significantly impact the accuracy of retrieval results. With these insights, system designers and researchers could optimize retrieval tasks and improve existing retrieval systems for different languages and domains.

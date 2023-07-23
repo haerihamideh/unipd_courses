@@ -1,0 +1,26 @@
+\section{Conclusions and Future Work}
+\label{sec:conclusion}
+
+In this paper, we have presented our approach to developing a custom search engine for processing documents in English and French languages, leveraging the powerful capabilities of the Apache Lucene library. Through rigorous evaluation using the official test collection from the 2023 LongEval Information Retrieval Lab, which included Qwant search engine's collection of queries and documents, our search solution has demonstrated significant advancements in performance across various information retrieval metrics, such as Mean Average Precision (MAP), Normalized Discounted Cumulative Gain (nDCG), and Precision at k (P@k).
+
+Our system's architecture, comprising the Indexer, Parser, and Searcher components, has been thoroughly discussed, emphasizing the importance of analyzer selection and customization. The successful implementation of BM25Similarity for ranking documents based on their relevance and the FrenchAnalyzer class for tokenizing text and filtering stopwords contributed to the robustness and efficiency of our search engine in indexing and searching large collections of text documents in both English and French languages.
+
+While our search engine has achieved promising results, there are several avenues for future exploration and improvement:
+
+\begin{enumerate}[i.]
+\item \textbf{Multilingual support}: Extending our search engine to support additional languages would enhance its versatility and applicability in diverse settings, catering to a wider range of document collections.
+
+\item \textbf{Improving ranking algorithms}: Exploring and implementing alternative or combined ranking algorithms could enhance the relevancy of search results and lead to better retrieval performance.
+
+\item \textbf{Advanced query expansion and reformulation}: Incorporating query expansion and reformulation techniques could improve the search engine's ability to understand user intent, resulting in more relevant documents being retrieved.
+
+\item \textbf{Integration of machine learning and natural language processing techniques}: Incorporating advanced techniques, such as learning-to-rank, neural ranking models, entity recognition, and sentiment analysis, could further enhance the search engine's performance, optimizing the retrieval process and providing more precise search results.
+
+\item \textbf{User interface and user experience optimization}: Developing an intuitive user interface and optimizing user experience can make the search engine more accessible and user-friendly, ultimately leading to increased adoption and satisfaction. Conducting user studies and gathering feedback on usability and satisfaction would help identify areas for refinement and user-driven enhancements.
+\end{enumerate}
+
+In conclusion, our custom search engine provides an effective solution for retrieving information from multilingual document collections, addressing the challenges identified in previous works. Through innovative techniques and methodologies, we have improved search performance and user experience.
+
+Looking ahead, future work will focus on optimizing the system's performance and scalability by exploring advanced indexing and query processing techniques. Additionally, incorporating user feedback mechanisms will enhance search result relevance and personalization. Extending the search engine to support additional languages and evaluating it in real-world scenarios will further validate its effectiveness and practicality.
+
+By pursuing these future research directions, our work contributes to the advancement of information retrieval and offers practical solutions for processing multilingual document collections. We aim to continue pushing the boundaries of search technology in diverse linguistic and cultural contexts.
