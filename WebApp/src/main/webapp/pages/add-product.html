@@ -1,0 +1,176 @@
+<div class="container">
+    <h5 class="h5 mb-5 mt-4">Add Product</h5>
+    <form class="card rounded-xl" id="product-form">
+        <div class="card-body p-4">
+            <div class="row g-3">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="product-type">Product Type:</label>
+                        <select class="form-control" id="product-type">
+                            <option value="DRUG">Drug</option>
+                            <option value="MATERIAL">Material</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="product-name">Product Name:</label>
+                        <input type="text" class="form-control" id="product-name" name="product-name">
+                        <div class="invalid-feedback"></div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="supplierId">Supplier:</label>
+                        <select class="form-control" id="supplierId">
+                            <option value="1">Option one</option>
+                            <option value="2">Option two</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="gender">Gender:</label>
+                        <select class="form-control" id="gender">
+                            <option value="MALE">Male</option>
+                            <option value="FEMALE">Female</option>
+                            <option value="UNISEX">Unisex</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="price">Price:</label>
+                        <input type="number" class="form-control" id="price">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="age-group">Age Group:</label>
+                        <select class="form-control" id="age-group">
+                            <option value="NEWBORNS">Newborns</option>
+                            <option value="INFANTS">Infants</option>
+                            <option value="CHILDREN">Children</option>
+                            <option value="ADOLESCENTS">Adolescents</option>
+                            <option value="YOUNG_ADULTS">Young Adults</option>
+                            <option value="ADULTS">Adults</option>
+                            <option value="MIDDLE_AGED">Middle-aged</option>
+                            <option value="AGED">Aged</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="expiration-date">Expiration Date:</label>
+                        <input type="date" class="form-control" id="expiration-date">
+                        <div class="invalid-feedback">Expiration date should not be before the current date</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="country-of-production">Country of Production:</label>
+                        <select class="form-control" id="country-of-production">
+                            <option value="AF">AF</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="limitation">Limitation:</label>
+                        <input type="number" class="form-control" id="limitation">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="description">Description :</label>
+                        <input type="text" class="form-control" id="description">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="sensitivity">Sensitivity:</label>
+                        <select class="form-control" id="sensitivity">
+                            <option value="True">Sensitive</option>
+                            <option value="False">Not Sensitive</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="shape">Shape:</label>
+                        <select class="form-control" id="shape">
+                            <option value="tablet">Tablet</option>
+                            <option value="capsule">Capsule</option>
+                            <option value="pill">Pill</option>
+                            <option value="liquid">Liquid</option>
+                            <option value="powder">Powder</option>
+                            <option value="gel">Gel</option>
+                            <option value="patch">Patch</option>
+                            <option value="injection">Injection</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="need-prescription">Prescription:</label>
+                        <select class="form-control" id="need-prescription">
+                            <option value="True">Yes</option>
+                            <option value="False">No</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex flex-wrap">
+                <button type="button" class="cancel-btn p-2 my-1 col-md-2 col-12" id="cancel-btn">Cancel</button>
+                <button type="submit" class="add-btn ml-auto p-2 my-1 col-md-2 col-12" id="add-btn">Add</button>
+            </div>
+        </div>
+    </form>
+</div>
+<script type="module" src="../js/addProduct.js"></script>
+<script type="module">
+    import {addProduct,cancelButton,unInitial} from "../js/addProduct.js"
+    console.log("HTML")
+
+    unInitial()
+
+    const countryOfProductionSelect = document.getElementById("country-of-production");
+
+    const countryCodes = [
+        "AF", "AX", "AL", "DZ", "AS", "AD", "AO", "AI", "AQ", "AG", "AR", "AM", "AW", "AU", "AT", "AZ", "BS", "BH", "BD", "BB", "BY", "BE", "BZ", "BJ", "BM", "BT", "BO", "BQ", "BA", "BW", "BV", "BR", "IO", "BN", "BG", "BF", "BI", "KH", "CM", "CA", "CV", "KY", "CF", "TD", "CL", "CN", "CX", "CC", "CO", "KM", "CG", "CD", "CK", "CR", "CI", "HR", "CU", "CW", "CY", "CZ", "DK", "DJ", "DM", "DO", "EC", "EG", "SV", "GQ", "ER", "EE", "ET", "FK", "FO", "FJ", "FI", "FR", "GF", "PF", "TF", "GA", "GM", "GE", "DE", "GH", "GI", "GR", "GL", "GD", "GP", "GU", "GT", "GG", "GN", "GW", "GY", "HT", "HM", "VA", "HN", "HK", "HU", "IS", "IN", "ID", "IR", "IQ", "IE", "IM", "IL", "IT", "JM", "JP", "JE", "JO", "KZ", "KE", "KI", "KP", "KR", "KW", "KG", "LA", "LV", "LB", "LS", "LR", "LY", "LI", "LT", "LU", "MO", "MK", "MG", "MW", "MY", "MV", "ML", "MT", "MH", "MQ", "MR", "MU", "YT", "MX", "FM", "MD", "MC", "MN", "ME", "MS", "MA", "MZ", "MM", "NA", "NR", "NP", "NL", "NC", "NZ", "NI", "NE", "NG", "NU", "NF", "MP", "NO", "OM", "PK", "PW", "PS", "PA", "PG", "PY", "PE", "PH", "PN", "PL", "PT", "PR", "QA", "RE", "RO", "RU", "RW", "BL", "SH", "KN", "LC", "MF", "PM", "VC", "WS", "SM", "ST", "SA", "SN", "RS", "SC", "SL", "SG", "SX", "SK", "SI", "SB", "SO", "ZA", "GS", "SS", "ES", "LK", "SD", "SR", "SJ", "SZ", "SE", "CH", "SY", "TW", "TJ", "TZ", "TH", "TL", "TG", "TK", "TO", "TT", "TN", "TR", "TM", "TC", "TV", "UG", "UA", "AE", "GB", "US", "UM", "UY", "UZ", "VU", "VE", "VN", "VG", "VI", "WF", "EH", "YE", "ZM", "ZW"
+    ];
+
+    countryCodes.forEach(countryCode => {
+        const option = document.createElement("option");
+        option.value = countryCode;
+        option.textContent = countryCode;
+        countryOfProductionSelect.appendChild(option);
+    });
+
+
+
+    document.querySelector("#product-form").addEventListener("submit", addProduct);
+    document.querySelector("#cancel-btn").addEventListener("click",cancelButton);
+
+    $('#product-type').change(function() {
+        const selectedOption = $(this).val();
+        if (selectedOption === 'MATERIAL') {
+            $('#sensitivity').parent().parent().hide();
+            $('#limitation').parent().parent().hide();
+            $('#need-prescription').parent().parent().hide();
+            $('#shape').parent().parent().hide();
+        } else {
+            $('#sensitivity').parent().parent().show();
+            $('#limitation').parent().parent().show();
+            $('#need-prescription').parent().parent().show();
+            $('#shape').parent().parent().show();
+        }
+    });
+</script>

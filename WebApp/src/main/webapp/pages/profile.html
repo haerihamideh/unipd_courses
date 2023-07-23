@@ -1,0 +1,118 @@
+<div class="container">
+    <h2 class="h2 mb-5 mt-4">Profile</h2>
+    <form action="" class="card rounded-xl">
+        <div class="card-body p-4">
+            <div class="row align-items-end mb-4">
+                <!-- Avatar -->
+                <div class="col-1">
+                    <label class="w-100 mb-3 mt-3">
+                        <img src="../images/users.svg" alt="User Avatar" class="img-fluid rounded"  style="border: 2px solid black; width: 50px; height: 50px;" />
+                        <input type="file" class="d-none" accept="image/*">  <!--todo: show thumbnail-->
+                    </label>
+                </div>
+                <!-- Name -->
+                <div class="col-3">
+                    <div class="form-group">
+                        <label class="form-label">Name :</label>
+                        <input type="text" class="form-control" placeholder="Name" />
+                    </div>
+                </div>
+                <!-- Last Name -->
+                <div class="col">
+                    <div class="form-group">
+                        <label class="form-label">Last Name :</label>
+                        <input type="text" class="form-control" placeholder="Last Name" />
+                    </div>
+                </div>
+                <!-- Birth Date -->
+                <div class="col">
+                    <div class="form-group">
+                        <label class="form-label">Birth Date :</label>
+                        <div class="row gx-3">
+                            <div class="col">
+                                <input type="text" class="form-control" placeholder="DD" />
+                            </div>
+                            <div class="col">
+                                <input type="text" class="form-control" placeholder="MM" />
+                            </div>
+                            <div class="col">
+                                <input type="text" class="form-control" placeholder="YY" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-4">
+                <!-- Gender -->
+                <div class="col-2">
+                    <div class="form-group">
+                        <label class="form-label">Gender :</label>
+                        <select class="form-control" name="Gender">
+                            <option value="" selected disabled>Gender</option>
+                            <option value="MALE">Male</option>
+                            <option value="FEMALE">Female</option>
+                            <option value="UNISEX">Unisex</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- Role -->
+                <div class="col-2">
+                    <div class="form-group" >
+                        <label class="form-label">Role :</label>
+                        <select class="form-control" name="Role">
+                            <option value="" selected disabled>Role</option>
+                            <option value="staff">Staff</option>
+                            <option value="admin">Administrator</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- Phone Number -->
+                <div class="col">
+                    <div class="form-group">
+                        <label class="form-label">Phone Number :</label>
+                        <input type="text" class="form-control" placeholder="Phone Number" />
+                    </div>
+                </div>
+                <!-- Email -->
+                <div class="col">
+                    <div class="form-group">
+                        <label class="form-label">Email :</label>
+                        <input type="email" class="form-control" placeholder="Email" />
+                    </div>
+                </div>
+            </div>
+            <!-- Address -->
+            <div class="form-group mb-4">
+                <label class="form-label">Address :</label>
+                <input type="text" class="form-control" placeholder="Address" />
+            </div>
+        </div>
+    </form>
+</div>
+<!--<script src="../js/profile.js" type="module"></script>-->
+<script type="module">
+    // import { onInitial } from "../js/profile.js";
+    //
+    // onInitial();
+
+    // Check if userData exists in localStorage
+    if (localStorage.getItem("userData")) {
+        // Retrieve data from localStorage
+        const userData = JSON.parse(localStorage.getItem("userData"));
+
+        // Log the retrieved userData
+        console.log("Retrieved userData:", userData);
+
+        // Fill the text fields with the values from localStorage
+        document.querySelector('input[placeholder="Name"]').value = userData.name;
+        document.querySelector('input[placeholder="Last Name"]').value = userData.lastName;
+        document.querySelector('select[name="Gender"]').value = userData.gender ?? "";
+        document.querySelector('select[name="Role"]').value = userData.role.role ?? "";
+        document.querySelector('input[placeholder="DD"]').value = userData.birthDate.day;
+        document.querySelector('input[placeholder="MM"]').value = userData.birthDate.month;
+        document.querySelector('input[placeholder="YY"]').value = userData.birthDate.year;
+        document.querySelector('input[placeholder="Phone Number"]').value = userData.phoneNumber;
+        document.querySelector('input[placeholder="Email"]').value = userData.email;
+        document.querySelector('input[placeholder="Address"]').value = userData.address;
+    }
+</script>

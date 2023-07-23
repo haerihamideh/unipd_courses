@@ -1,0 +1,233 @@
+
+<div class="container">
+    <h5 class="h5 mb-5 mt-4">Add Receipt</h5>
+    <form class="card rounded-xl" id="product-form">
+        <div class="card-body p-4">
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <label >Receipt Image:</label>
+                    <label class="w-100 mb-3 mt-3 bg-secondary rounded" style="max-width: 50%">
+                        <img id="add-r-preview" src="../images/users.svg" alt="User Avatar" class="w-100" />
+                        <input id="rPicture" name="rPicture" type="file" class="d-none" accept="image/*">
+                    </label>
+                </div>
+            </div>
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <div class="form-group h-100">
+                        <label for="payment_method">Payment Method:</label>
+                        <select class="form-control h-40" id="payment_method">
+                            <option value="CASH">cash</option>
+                            <option value="DEBIT_CARD">Debit card</option>
+                            <option value="CREDIT_CARD">Credit card</option>
+                            <option value="PAYPAL">Paypal</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <!--            <h5 class="h5 mb-5 mt-4">Add to storage</h5>-->
+            <div class="row align-items-stretch">
+                <div class="col-md-6">
+                    <div class="form-group h-100">
+                        <label for="Drug-list">Choose Drug:</label>
+                        <select class="form-control h-50" id="Drug-list">
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group h-100">
+                        <label for="d_amount">Amount:</label>
+                        <input type="number" class="form-control h-50" id="d_amount" min="0">
+                    </div>
+                </div>
+                <div class="col-md-2 d-flex align-items-end">
+                    <!--                    <button type="submit" class="add-btn ml-auto p-2 my-2 col-12 btn btn-primary" id="d_add-to-storage" style="width: 100px;" onclick="addToReceipt('Drug-list','d_amount','d_threshold')">Add</button>-->
+                    <input type="button" class="add-btn ml-auto p-2 my-2 col-12 btn btn-primary" id="add-to-storage"
+                           value="Add"/>
+                </div>
+            </div>
+            <div class="row align-items-stretch">
+                <div class="col-md-6">
+                    <div class="form-group h-100">
+                        <label for="Material-list">Choose Material:</label>
+                        <select class="form-control h-50" id="Material-list">
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group h-100">
+                        <label for="amount">Amount:</label>
+                        <input type="number" class="form-control h-50" id="amount" min="0">
+                    </div>
+                </div>
+                <div class="col-md-2 d-flex align-items-end">
+                    <input type="button" class="add-btn ml-auto p-2 my-2 col-12 btn btn-primary" id="m_add-to-storage"
+                           value="Add"/>
+
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <div class="row align-items-stretch">
+                    <div class="col-md-2 d-flex align-items-end">
+                        <button type="submit" id="final-add" class="btn btn-primary w-100">Add</button>
+                    </div>
+
+                    <div class="col-md-2 order-md-first">
+                        <a href="#receipt" class="btn btn-secondary w-100">Cancel</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div id='tbl' class="border rounded-xl bg-white" onload="alert('ttt')">
+
+    </div>
+
+</div>
+<script type="module">
+    import {oninitial} from "../js/addReceipt.js";
+
+    oninitial()
+
+    const drug = [];
+    const material = [];
+    let totalAmount = 0;
+
+    // Form submittion
+    document.getElementById("product-form").addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const payment_method = document.getElementById('payment_method').value;
+        const avatar = document.getElementById("rPicture").value;
+
+        console.log("drug list:", drug);
+        console.log("material List : ", material);
+        console.log("total amount : ", totalAmount);
+        console.log("payment_method : ", payment_method);
+
+
+    });
+
+    document.getElementById("rPicture").addEventListener("change", function (){
+        console.log("ali");
+        const fileInput = event.target;
+        const avatarPreview = document.getElementById("add-r-preview");
+
+        if (fileInput.files && fileInput.files[0]) {
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                avatarPreview.setAttribute("src", e.target.result);
+            };
+
+            reader.readAsDataURL(fileInput.files[0]);
+        }
+    });
+
+    document.getElementById("m_add-to-storage").addEventListener("click", function () {
+
+        const selectElement = document.getElementById('Material-list');
+        const selectedValue = selectElement.value;
+        const [productId, price] = selectedValue.split('|');
+        console.log("select value: ", selectedValue);
+        material.push({"id": productId});
+
+        let d_selectValue = $("#Material-list option:selected").text();
+        let d_amountValue = document.getElementById("amount").value;
+
+        if (d_amountValue == null || d_amountValue == 0) {
+            d_amountValue = 1;
+        }
+
+        console.log("MATERIAL")
+
+        totalAmount += price * d_amountValue;
+
+        receiptData.push({
+            Name: d_selectValue,
+            Type: "MATERIAL",
+            Price: price * d_amountValue
+        });
+
+        const table = document.getElementById("receipt_list")
+        table.remove()
+        console.log("MATERIAL")
+        createGenericTable(
+            "receipt_list",
+            ["Name", "Type", "Price"],
+            receiptData,
+            footerContent,
+            "default"
+        );
+    });
+    //==============================================================================////
+    document.getElementById("add-to-storage").addEventListener("click", function () {
+
+        const selectElement = document.getElementById('Drug-list');
+        const selectedValue = selectElement.value;
+        const [productId, price] = selectedValue.split('|');
+        console.log("select value: ", selectedValue);
+
+        drug.push({"id": productId});
+
+        let selectValue = $("#Drug-list option:selected").text();
+        console.log("name: ", selectValue)
+        // alert(selectValue)
+        let amountValue = document.getElementById("d_amount").value;
+        if (amountValue == null || amountValue == 0) {
+            amountValue = 1;
+        }
+        console.log("amount: ", amountValue)
+        totalAmount += price * amountValue;
+        receiptData.push({
+            Name: selectValue,
+            Type: "Drug",
+            Price: price * amountValue
+        })
+        const table = document.getElementById("receipt_list")
+        table.remove()
+        // Re-render the table with the new data
+        createGenericTable(
+            "receipt_list",
+            ["Name", "Type", "Price"],
+            receiptData,
+            footerContent,
+            "default"
+        );
+    });
+
+    import {createGenericTable} from "../js/table/table.js";
+
+    let receiptData = [
+        // {
+        //     Name: "test drug",
+        //     threshold: "10",
+        //     amount: "1"
+        // }
+    ]
+    const footerContent = {
+        button: {
+            active: true,
+            cancel: "Cancel",
+            onCancel: () => {
+            },
+            submit: "Submit",
+            onSubmit: () => {
+            }
+        }
+    }
+
+    createGenericTable(
+        "receipt_list",
+        ["Name", "Type", "Price"],
+        receiptData,
+        footerContent,
+        "default"
+    );
+
+
+
+
+
+</script>

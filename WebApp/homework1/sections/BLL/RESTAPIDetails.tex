@@ -1,0 +1,931 @@
+\newpage
+\subsection{REST API Details}
+
+%List here a few resources retrievable via REST API
+
+\subsubsection*{CREATE DRUG}
+
+% the description of the resource
+The following endpoint allows the creation of a new drug in the pharmacy system.
+
+\begin{itemize}
+    \item \textbf{URL:}
+    \newline \hspace*{1cm} \texttt{/drug}  
+    \item \textbf{Method:}
+    \newline \hspace*{1cm}\texttt{POST}
+    \item \textbf{Data Parameters:}
+\begin{lstlisting}[breaklines]
+{
+    "name": "proteine",
+    "supplier": 2,
+    "expirationDate": "2024-06-30",
+    "shape": "tablet",
+    "gender": "FEMALE",
+    "ageGroup": "ADULTS",
+    "isSensitive": true,
+    "needPrescription": false,
+    "description": "protein is a needed.",
+    "limitation": 20,
+    "price": 7.99,
+    "countryOFProduction": "AF"
+}
+\end{lstlisting}
+    \item \textbf{Success Response:}
+\begin{lstlisting}[breaklines]
+{
+    "msg": "OK",
+    "data": {
+        "id": 5,
+        "name": "proteine",
+        "expirationDate": "2024-06-30",
+        "image": null,
+        "shape": "tablet",
+        "gender": "FEMALE",
+        "ageGroup": "ADULTS",
+        "needPrescription": false,
+        "description": "protein is a needed.",
+        "limitation": 20,
+        "price": 7.99,
+        "countryOFProduction": "AF",
+        "lastModifiedDate": null,
+        "sensitive": true
+    }
+}
+\end{lstlisting}
+    \item \textbf{Error Response:}
+    \begin{lstlisting}[breaklines]
+    {
+    "msg": "drug_exists_before",
+    "data": "com.unipd.semicolon.business.exception.DrugExistsException"
+    }
+    \end{lstlisting}
+\end{itemize}
+
+\subsubsection*{EDIT DRUG}
+The following endpoint allows the modification of an existing drug in the pharmacy system.
+\begin{itemize}
+    \item \textbf{URL:}
+    \newline \hspace*{1cm} \texttt{/drug/{id}}  
+    \item \textbf{Method:}
+    \newline \hspace*{1cm}\texttt{PUT}
+    \item \textbf{Data Parameters:}
+\begin{lstlisting}[breaklines]
+{
+    "name": "Ibuprofen",
+    "expirationDate": "2024-06-30",
+    "supplier": 1,
+    "shape": "tablet",
+    "gender": "FEMALE",
+    "ageGroup": "ADULTS",
+    "needPrescription": false,
+    "description": "Ibuprofen is a nonsteroidal anti-inflammatory drug (NSAID) used to relieve pain and reduce fever.",
+    "limitation": 20,
+    "price": 7.99,
+    "countryOFProduction": "PR",
+    "lastModifiedDate": null,
+    "sensitive": false
+}
+
+\end{lstlisting}
+    \item \textbf{Success Response:}
+\begin{lstlisting}[breaklines]
+{
+    "msg": "OK",
+    "data": {
+        "id": 5,
+        "name": "Ibuprofen",
+        "expirationDate": "2024-06-30",
+        "image": null,
+        "shape": "tablet",
+        "gender": "FEMALE",
+        "ageGroup": "ADULTS",
+        "needPrescription": false,
+        "description": "Ibuprofen is a nonsteroidal anti-inflammatory drug (NSAID) used to relieve pain and reduce fever.",
+        "limitation": 20,
+        "price": 7.99,
+        "countryOFProduction": "PR",
+        "lastModifiedDate": null,
+        "sensitive": true
+    }
+}
+
+\end{lstlisting}
+\end{itemize}
+
+\subsubsection*{GET DRUG}
+The following endpoint retrieves the details of a specific drug based on its unique ID.
+\begin{itemize}
+    \item \textbf{URL:}
+    \newline \hspace*{1cm} \texttt{/drug/id}  
+    \item \textbf{Method:}
+    \newline \hspace*{1cm}\texttt{GET}
+    \item \textbf{Success Response:}
+\begin{lstlisting}[breaklines]
+{
+    "msg": "OK",
+    "data": {
+        "id": null,
+        "name": "proteine",
+        "supplier": {
+            "id": 2,
+            "name": "sup1",
+            "address": "here in padova",
+            "email": "su1@pd.it",
+            "telephoneNumber": "099999",
+            "drugs": [
+                {
+                    "id": 4,
+                    "name": "proteine",
+                    "expirationDate": "2024-06-30",
+                    "image": null,
+                    "shape": "tablet",
+                    "gender": "FEMALE",
+                    "ageGroup": "ADULTS",
+                    "needPrescription": false,
+                    "description": "protein is a needed.",
+                    "limitation": 20,
+                    "price": 7.99,
+                    "countryOFProduction": "AF",
+                    "lastModifiedDate": null,
+                    "sensitive": true
+                }
+            ],
+            "materials": [
+               
+            ]
+        },
+        "expirationDate": "2024-06-30",
+        "image": null,
+        "shape": "tablet",
+        "gender": "FEMALE",
+        "ageGroup": "ADULTS",
+        "needPrescription": false,
+        "description": "protein is a needed.",
+        "limitation": 20,
+        "price": 7.99,
+        "countryOFProduction": "AF",
+        "lastModifiedDate": null,
+        "orders": null,
+        "receipts": null,
+        "sensitive": true
+    }
+}
+\end{lstlisting}
+\end{itemize}
+
+\subsubsection*{GET ALL DRUG}
+The following endpoint retrieves a list of all drugs stored in the pharmacy system.
+\begin{itemize}
+    \item \textbf{URL:}
+    \newline \hspace*{1cm} \texttt{/drug}  
+    \item \textbf{Method:}
+    \newline \hspace*{1cm}\texttt{GET}
+    \item \textbf{Success Response:}
+\begin{lstlisting}[breaklines]
+{
+    "msg": "OK",
+    "data": [
+        {
+            "id": null,
+            "name": "Ibuprofen",
+            "supplier": {
+                "id": 1,
+                "name": "sup0",
+                "address": "pd",
+                "email": "su0@pd.it",
+                "telephoneNumber": "00000",
+                "drugs": [
+                    {
+                        "id": 3,
+                        "name": "Ibuprofen",
+                        "expirationDate": "2024-06-30",
+                        "image": null,
+                        "shape": "tablet",
+                        "gender": "MALE",
+                        "ageGroup": "ADULTS",
+                        "needPrescription": false,
+                        "description": "Ibuprofen is a nonsteroidal anti-inflammatory drug (NSAID) used to relieve pain and reduce fever.",
+                        "limitation": 20,
+                        "price": 5.99,
+                        "countryOFProduction": "PR",
+                        "lastModifiedDate": null,
+                        "sensitive": false
+                    }
+                ],
+                "materials": []
+            },
+            "expirationDate": "2024-06-30",
+            "image": null,
+            "shape": "tablet",
+            "gender": "MALE",
+            "ageGroup": "ADULTS",
+            "needPrescription": false,
+            "description": "Ibuprofen is a nonsteroidal anti-inflammatory drug (NSAID) used to relieve pain and reduce fever.",
+            "limitation": 20,
+            "price": 5.99,
+            "countryOFProduction": "PR",
+            "lastModifiedDate": null,
+            "orders": null,
+            "receipts": null,
+            "sensitive": false
+        }
+    ]
+}
+
+\end{lstlisting}
+\end{itemize}
+
+\subsubsection*{CREATE MATERIAL}
+The following endpoint allows the creation of a new material in the pharmacy system.
+\begin{itemize}
+    \item \textbf{URL:}
+    \newline \hspace*{1cm} \texttt{/material}  
+    \item \textbf{Method:}
+    \newline \hspace*{1cm}\texttt{POST}
+    \item \textbf{Data Parameters:}
+\begin{lstlisting}[breaklines]
+{
+  "name": "Example Product",
+  "supplier": 2,
+  "countryOfProduction": "PR",
+  "expirationDate": "2022-12-31",
+  "gender": "FEMALE",
+  "price": 50.0,
+  "ageGroup": "ADULTS",
+  "description": "This is an example product description. It can be as long or as short as you like."
+}
+
+\end{lstlisting}
+    \item \textbf{Success Response:}
+\begin{lstlisting}[breaklines]
+{
+    "msg": "OK",
+    "data": {
+        "id": 6,
+        "name": "Example Product",
+        "countryOfProduction": "PR",
+        "expirationDate": "2022-12-31",
+        "image": null,
+        "gender": "FEMALE",
+        "price": 50.0,
+        "ageGroup": "ADULTS",
+        "lastModifiedDate": null,
+        "description": "This is an example product description. It can be as long or as short as you like."
+    }
+}
+
+\end{lstlisting}
+\end{itemize}
+
+\subsubsection*{EDIT MATERIAL}
+The following endpoint allows the modification of an existing material in the pharmacy system.
+\begin{itemize}
+    \item \textbf{URL:}
+    \newline \hspace*{1cm} \texttt{/material/{id}}  
+    \item \textbf{Method:}
+    \newline \hspace*{1cm}\texttt{PUT}
+    \item \textbf{Data Parameters:}
+\begin{lstlisting}[breaklines]
+{
+    "name": "Example Product",
+    "supplier": 2,
+    "countryOfProduction": "PR",
+    "expirationDate": "2022-12-31",
+    "gender": "FEMALE",
+    "price": 50.0,
+    "ageGroup": "ADULTS",
+    "description": "This is an example product description. It can be as long or as short as you like."
+}
+
+\end{lstlisting}
+    \item \textbf{Success Response:}
+\begin{lstlisting}[breaklines]
+{
+    "msg": "OK",
+    "data": true
+}
+
+\end{lstlisting}
+\item \textbf{Error Response:}
+   
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{sections/BLL/error_material.png}
+    \caption{Creating Material Error Response}
+    \end{figure}
+   
+\end{itemize}
+
+\subsubsection*{GET MATERIAL}
+The following endpoint retrieves the details of a specific material based on its unique ID. 
+\begin{itemize}
+    \item \textbf{URL:}
+    \newline \hspace*{1cm} \texttt{/material/{id}}  
+    \item \textbf{Method:}
+    \newline \hspace*{1cm}\texttt{GET}
+    \item \textbf{Success Response:}
+\begin{lstlisting}[breaklines]
+{
+    "msg": "OK",
+    "data": {
+        "id": 6,
+        "name": "Example Product",
+        "countryOfProduction": "PR",
+        "expirationDate": "2022-12-31",
+        "image": null,
+        "gender": "FEMALE",
+        "price": 50.0,
+        "ageGroup": "ADULTS",
+        "lastModifiedDate": null,
+        "description": "This is an example product description. It can be as long or as short as you like."
+    }
+}
+\end{lstlisting}
+\end{itemize}
+
+\subsubsection*{GET ALL MATERIAL}
+The following endpoint retrieves a list of all materials stored in the pharmacy system. 
+\begin{itemize}
+    \item \textbf{URL:}
+    \newline \hspace*{1cm} \texttt{/material}  
+    \item \textbf{Method:}
+    \newline \hspace*{1cm}\texttt{GET}
+    \item \textbf{Success Response:}
+\begin{lstlisting}[breaklines]
+{
+    "msg": "OK",
+    "data": [
+        {
+            "id": null,
+            "name": "Example Product",
+            "supplier": {
+                "id": 2,
+                "name": "sup1",
+                "address": "here in padova",
+                "email": "su1@pd.it",
+                "telephoneNumber": "099999",
+                "drugs": [],
+                "materials": [
+                    {
+                        "id": 6,
+                        "name": "Example Product",
+                        "countryOfProduction": "PR",
+                        "expirationDate": "2022-12-31",
+                        "image": null,
+                        "gender": "FEMALE",
+                        "price": 50.0,
+                        "ageGroup": "ADULTS",
+                        "lastModifiedDate": null,
+                        "description": "This is an example product description. It can be as long or as short as you like."
+                    }
+                ]
+            },
+            "expirationDate": "2022-12-31",
+            "image": null,
+            "gender": "MALE",
+            "ageGroup": "ADULTS",
+            "price": 50.0,
+            "lastModifiedDate": null,
+            "description": "This is an example product description. It can be as long or as short as you like.",
+            "countryOfProduction": "PR",
+            "orders": null,
+            "receipts": null
+        }
+    ]
+}
+
+\end{lstlisting}
+\end{itemize}
+
+\subsubsection*{CREATE RECIEPT}
+The following endpoint allows the creation of a new receipt in the pharmacy system.
+\begin{itemize}
+    \item \textbf{URL:}
+    \newline \hspace*{1cm} \texttt{/receipt}  
+    \item \textbf{Method:}
+    \newline \hspace*{1cm}\texttt{POST}
+    \item \textbf{Data Parameters:}
+\begin{lstlisting}[breaklines]
+{
+   "id":0,
+   "list_drug_id":[1,2],
+   "list_material_id":null,
+   "image":[1,0,0,0,1,1],
+   "date":"2023-04-27T07:08:30.267Z",
+   "paymentMethod":"CASH"
+}
+\end{lstlisting}
+    \item \textbf{Success Response:}
+\begin{lstlisting}[breaklines]
+{
+   "msg":"OK",
+   "data":{
+      "id":1,
+      "receiptDrugs":[
+         {
+            "id":1,
+            "name":"new drug",
+            "expirationDate":"2023-04-23T10:44:38.843+00:00",
+            "image":null,
+            "shape":"shape",
+            "gender":"MALE",
+            "ageGroup":"ADULTS",
+            "needPrescription":true,
+            "description":"string",
+            "limitation":10,
+            "price":60,
+            "countryOFProduction":"AF",
+            "lastModifiedDate":null,
+            "sensitive":true
+         },
+         {
+            "id":2,
+            "name":"new drug",
+            "expirationDate":"2023-04-23T10:44:38.843+00:00",
+            "image":null,
+            "shape":"shape",
+            "gender":"MALE",
+            "ageGroup":"ADULTS",
+            "needPrescription":true,
+            "description":"string",
+            "limitation":10,
+            "price":60,
+            "countryOFProduction":"AF",
+            "lastModifiedDate":null,
+            "sensitive":true
+         }
+      ],
+      "receiptMaterials":[],
+      "image":"AQAAAAEB",
+      "date":"2023-04-27T07:08:30.267+00:00",
+      "paymentMethod":"CASH"
+   }
+}
+\end{lstlisting}
+\item \textbf{Error Response}:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.73\textwidth]{sections/BLL/error_reciept.png}
+    \caption{Error Response of Reciept}
+    \label{fig:my_label}
+\end{figure}
+\end{itemize}
+
+\subsubsection*{EDIT RECIEPT}
+The following endpoint allows the modification of an existing receipt in the pharmacy system.
+\begin{itemize}
+    \item \textbf{URL:}
+    \newline \hspace*{1cm} \texttt{/receipt/{id}}  
+    \item \textbf{Method:}
+    \newline \hspace*{1cm}\texttt{PUT}
+    \item \textbf{Data Parameters:}
+\begin{lstlisting}[breaklines]
+{
+   "id":1,
+   "list_drug_id":[1,2,3],
+   "list material id":null,
+   "material id":0,
+   "image":null,
+   "date":"2023-04-27T07:42:56.226Z",
+   "paymentMethod":"PAYPAL"
+}
+\end{lstlisting}
+    \item \textbf{Success Response:}
+\begin{lstlisting}[breaklines]
+{
+   "msg":"OK",
+   "data":true
+}
+\end{lstlisting}
+\end{itemize}
+
+\subsubsection*{GET RECIEPT}
+The following endpoint retrieves the details of a specific receipt based on its unique ID.
+\begin{itemize}
+    \item \textbf{URL:}
+    \newline \hspace*{1cm} \texttt{/receipt/{id}}  
+    \item \textbf{Method:}
+    \newline \hspace*{1cm}\texttt{GET}
+    \item \textbf{Success Response:}
+\begin{lstlisting}[breaklines]
+{
+   "msg":"OK",
+   "data":{
+      "id":1,
+      "receiptDrugs":[
+         {
+            "id":1,
+            "name":"new drug",
+            "expirationDate":"2023-04-23T10:44:38.843+00:00",
+            "image":null,
+            "shape":"shape",
+            "gender":"MALE",
+            "ageGroup":"ADULTS",
+            "needPrescription":true,
+            "description":"string",
+            "limitation":10,
+            "price":60,
+            "countryOfProduction":"AF",
+            "lastModifiedDate":null,
+            "sensitive":true
+         },
+         {
+            "id":2,
+            "name":"new drug",
+            "expirationDate":"2023-04-23T10:44:38.843+00:00",
+            "image":null,
+            "shape":"shape",
+            "gender":"MALE",
+            "ageGroup":"ADULTS",
+            "needPrescription":true,
+            "description":"string",
+            "limitation":10,
+            "price":60,
+            "countryOFProduction":"AF",
+            "lastModifiedDate":null,
+            "sensitive":true
+         },
+         {
+            "id":3,
+            "name":"new drug",
+            "expirationDate":"2023-04-23T10:44:38.843+00:00",
+            "image":null,
+            "shape":"shape",
+            "gender":"MALE",
+            "ageGroup":"ADULTS",
+            "needPrescription":true,
+            "description":"string",
+            "limitation":10,
+            "price":60,
+            "countryOFProduction":"AF",
+            "lastModifiedDate":null,
+            "sensitive":true
+         }
+      ],
+      "receiptMaterials":[
+         
+      ],
+      "image":"AQAAAAEB",
+      "date":"2023-04-27T07:42:56.226+00:00",
+      "paymentMethod":"PAYPAL"
+   }
+}
+\end{lstlisting}
+\end{itemize}
+
+\subsubsection*{CREATE SUPPLIER (JSP)}
+The following endpoint (Figure \ref{fig:supplierList}) allows the creation of a new supplier in the pharmacy system.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.73\textwidth]{sections/BLL/supplierList.png}
+    \caption{List of Supplier}
+    \label{fig:supplierList}
+\end{figure}
+
+\begin{itemize}
+    \item \textbf{URL:}
+    \newline \hspace*{1cm} \texttt{/supplier}  
+    \item \textbf{Method:}
+    \newline \hspace*{1cm}\texttt{POST}
+    \item \textbf{Data Parameters:}
+\begin{lstlisting}[breaklines]
+{
+    "name": "sup4",
+    "address": "here in padova",
+    "email": "su4@pd.it",
+    "telephoneNumber": "0888888"
+}
+
+\end{lstlisting}
+    \item \textbf{Success Response:}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.73\textwidth]{sections/BLL/supplierSuccess.png}
+    \caption{Success Response of Supplier}
+    \label{fig:my_label}
+\end{figure}
+    \item \textbf{Error Response}:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.73\textwidth]{sections/BLL/supplierError.png}
+    \caption{Error Response of Supplier}
+    \label{fig:my_label}
+\end{figure}
+\end{itemize}
+\subsubsection*{EDIT SUPPLIER}
+The following endpoint modify storage in the system.
+\begin{itemize}
+    \item \textbf{URL:}
+    \newline \hspace*{1cm} \texttt{/storage/id}  
+    \item \textbf{Method:}
+    \newline \hspace*{1cm}\texttt{PUT}
+    
+    \item \textbf{Success Response:}
+\begin{lstlisting}[breaklines]
+success response:
+{
+   msg: "OK",
+   data: true
+}
+\end{lstlisting}
+    \item \textbf{Error Response:}
+    \begin{lstlisting}[breaklines]
+{
+    "msg": "permission denied",
+    "data": "Token :eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiUm9sZSI6ImFkbWluIiwiaWF0IjoxNjgyMjgyNDg0LCJleHAiOjE3MTgyODI0ODR9.L8IXQCVJdk_05lYLRSnkkB5kqrSGFS1cPnA7j04kdG8"
+}
+\end{lstlisting}
+\end{itemize}
+\subsubsection*{DELETE SUPPLIER}
+The following endpoint delete storage in the system.
+\begin{itemize}
+    \item \textbf{URL:}
+    \newline \hspace*{1cm} \texttt{/storage/id}  
+    \item \textbf{Method:}
+    \newline \hspace*{1cm}\texttt{DELETE}
+    \item \textbf{Success Response:}
+\begin{lstlisting}[breaklines]
+success response:
+{
+   msg: "OK",
+   data: true
+}
+\end{lstlisting}
+\end{itemize}
+\subsubsection*{GET SUPPLIER}
+The following endpoint modify storage in the system.
+\begin{itemize}
+    \item \textbf{URL:}
+    \newline \hspace*{1cm} \texttt{/storage/id}  
+    \item \textbf{Method:}
+    \newline \hspace*{1cm}\texttt{GET}
+    \item \textbf{Data Parameters:}
+\begin{lstlisting}[breaklines]
+{
+    "msg": "OK",
+    "data": {
+        "id": 1,
+        "name": "John",
+        "address": "Main 123",
+        "email": "john.doe@gmail.com",
+        "telephoneNumber": "3558549953",
+        "drugs": [],
+        "materials": []
+    }
+}
+
+\end{lstlisting}
+    \item \textbf{Success Response:}
+\begin{lstlisting}[breaklines]
+{
+    "msg": "Supplier Not Found with id1",
+    "data": null
+}
+\end{lstlisting}
+  
+\end{itemize}
+\subsubsection*{PHARMACY ACTIVATION}
+The following endpoint activates a pharmacy in the system.
+\begin{itemize}
+    \item \textbf{URL:}
+    \newline \hspace*{1cm} \texttt{/pharmacy/id}  
+    \item \textbf{Method:}
+    \newline \hspace*{1cm}\texttt{PATCH}
+    \item \textbf{Data Parameters:}
+\begin{lstlisting}[breaklines]
+{
+    "status" : "ACTIVE"
+}
+
+\end{lstlisting}
+    \item \textbf{Success Response:}
+\begin{lstlisting}[breaklines]
+{
+    "msg": "OK",
+    "data": {
+        "id": 1,
+        "name": "pharmacy1",
+        "address": "padova",
+        "telephoneNumber": "09999999",
+        "time_table": [],
+        "logo": null,
+        "storage": [],
+        "staff": [
+            {
+                "id": 1,
+                "name": "jeremy",
+                "lastName": "jervis",
+                "gender": "MALE",
+                "birthDate": null,
+                "phoneNumber": "08888888",
+                "address": "unipd",
+                "role": null,
+                "email": "hi@uni.com",
+                "accountStatus": "ACTIVE",
+                "profilePicture": null
+            }
+        ],
+        "status": "ACTIVE",
+        "orders": []
+    }
+}
+
+\end{lstlisting}
+\end{itemize}
+\subsubsection*{PHARMACY CREATION}
+The following endpoint create a pharmacy in the system.
+\begin{itemize}
+    \item \textbf{URL:}
+    \newline \hspace*{1cm} \texttt{/pharmacy}  
+    \item \textbf{Method:}
+    \newline \hspace*{1cm}\texttt{POST}
+    \item \textbf{Data Parameters:}
+\begin{lstlisting}[breaklines]
+{
+  "name": "Example Pharmacy1",
+  "address": "123 Main St",
+  "tellNumber": "3389929820",
+  "timeTable": [],
+  "logoPath": [],
+  "storage": [],
+  "staff": [],
+  "status": "ACTIVE"
+}
+
+\end{lstlisting}
+\item \textbf{Success Response:}
+\begin{lstlisting}[breaklines]
+{
+    "msg": "OK",
+    "data": {
+        "id": 2,
+        "name": "Example Pharmacy1",
+        "address": "123 Main St",
+        "telephoneNumber": "3389929820",
+        "time_table": null,
+        "logo": "",
+        "storage": null,
+        "staff": null,
+        "status": "ACTIVE",
+        "orders": null
+    }
+}
+\end{lstlisting}
+    \item \textbf{Error Response:}
+\begin{lstlisting}[breaklines]
+{
+    "msg": "Telephone number should contain only digits",
+    "data": "com.unipd.semicolon.business.exception.IllegalArgumentException"
+}
+\end{lstlisting}
+\end{itemize}
+\subsubsection*{PHARMACY EDIT}
+The following endpoint modification a pharmacy in the system.
+\begin{itemize}
+    \item \textbf{URL:}
+    \newline \hspace*{1cm} \texttt{/pharmacy/id}  
+    \item \textbf{Method:}
+    \newline \hspace*{1cm}\texttt{PUT}
+    \item \textbf{Data Parameters:}
+\begin{lstlisting}[breaklines]
+{
+    "name": "Hpp's Pharmacy2222",
+    "tell_number": "3389338922"
+}
+\end{lstlisting}
+\item \textbf{Success Response:}
+\begin{lstlisting}[breaklines]
+{
+    "msg": "OK",
+    "data": true
+}
+\end{lstlisting}
+    \item \textbf{Error Response:}
+\begin{lstlisting}[breaklines]
+{
+    "msg": "Telephone number should contain only digits",
+    "data": "com.unipd.semicolon.business.exception.IllegalArgumentException"
+}
+\end{lstlisting}
+\end{itemize}
+\subsubsection*{PHARMACY DELETE}
+The following endpoint delete a pharmacy in the system.
+\begin{itemize}
+    \item \textbf{URL:}
+    \newline \hspace*{1cm} \texttt{/pharmacy/save}  
+    \item \textbf{Method:}
+    \newline \hspace*{1cm}\texttt{POST}
+  
+\item \textbf{Success Response:}
+\begin{lstlisting}[breaklines]
+{
+    "msg": "OK",
+    "data": true
+}
+\end{lstlisting}
+\end{itemize}
+\subsubsection*{PHARMACY GET}
+The following endpoint get a pharmacy in the system.
+\begin{itemize}
+    \item \textbf{URL:}
+    \newline \hspace*{1cm} \texttt{/pharmacy/id}  
+    \item \textbf{Method:}
+    \newline \hspace*{1cm}\texttt{GET}
+\item \textbf{Success Response:}
+\begin{lstlisting}[breaklines]
+{
+    "msg": "OK",
+    "data": {
+        "id": 1,
+        "name": "Hpp's Pharmacy2222",
+        "address": "123 Main St",
+        "telephoneNumber": "3389338922",
+        "time_table": [],
+        "logo": "",
+        "storage": [],
+        "staff": [
+            {
+                "id": 4,
+                "name": "John",
+                "lastName": "Doe",
+                "gender": "MALE",
+                "birthDate": "1995-06-30T00:00:00",
+                "phoneNumber": "3358962012",
+                "address": "123 Main St.",
+                "role": {
+                    "id": 2,
+                    "role": "user"
+                },
+                "email": "john.doe@example.com",
+                "accountStatus": "ACTIVE",
+                "profilePicture": null
+            }
+        ],
+        "status": "ACTIVE",
+        "orders": []
+    }
+}
+\end{lstlisting}
+\end{itemize}
+\subsubsection*{ACCOUNT LOGIN}
+The following endpoint allows users to log in to their account in the pharmacy system.
+\begin{itemize}
+    \item \textbf{URL:}
+    \newline \hspace*{1cm} \texttt{/account}  
+    \item \textbf{Method:}
+    \newline \hspace*{1cm}\texttt{GET}
+    \item \textbf{Data Parameters:}
+\begin{lstlisting}[breaklines]
+{
+    "username" : "STRING",
+    "password" : "STRING"
+}
+
+\end{lstlisting}
+    \item \textbf{Success Response:}
+\begin{lstlisting}[breaklines]
+{
+   "msg": "OK",
+   "data": {
+       "username": "STRING",
+       "lastLoginDate": "2023-04-27T00:48:27",
+       "user": {
+           "id":  LONG ,
+           "name": "STRING",
+           "lastName": "STRING",
+           "gender": MALE,
+           "birthDate": LOCALDATE,
+           "phoneNumber": "STRING",
+           "address": "STRING",
+           "role": {
+               "id": LONG,
+               "role": "STRING"
+           },
+           "email": "STRING",
+           "accountStatus":  "STRING",
+           "profilePicture": byte[]
+       },
+       "token": "STRING"
+   }
+}
+
+
+\end{lstlisting}
+\end{itemize}
+
+\subsubsection*{ACCOUNT LOGOUT}
+The following endpoint allows users to log out of their account in the pharmacy system. 
+\begin{itemize}
+    \item \textbf{URL:}
+    \newline \hspace*{1cm} \texttt{/account/{token}}  
+    \item \textbf{Method:}
+    \newline \hspace*{1cm}\texttt{POST}
+    \item \textbf{Success Response:}
+\begin{lstlisting}[breaklines]
+{
+   "msg": "OK",
+   "data": true
+}
+
+\end{lstlisting}
+\end{itemize}
