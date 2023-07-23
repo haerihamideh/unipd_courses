@@ -1,0 +1,43 @@
+\section{Experimental Setup}
+\label{sec:setup}
+
+In this section, we describe the experimental setup for evaluating the performance of our search engine, including the collections used, evaluation measures, the organization of our Git repository, and the hardware used for conducting the experiments.
+
+\subsection{Collections}
+Our studies were carried out utilizing the Qwant search engine's database of queries and documents. This is the official test collection for the 2023 LongEval Information Retrieval Lab (https://clef-longeval.github.io/)\cite{CLEFLongEval}, and it contains test datasets for two sub-tasks: short-term persistence (sub-task A) and long-term persistence (sub-task B). These datasets comprise English and French documents, which our search engine processes using the Lucene library.
+
+\subsection{Evaluation Measures}
+The performance of our search engine is evaluated using standard information retrieval evaluation metrics, such as:
+
+\noindent\textbf{Mean Average Precision (MAP)}: This measure calculates the average precision across all queries, providing an overall evaluation of the search engine's ability to retrieve relevant documents.
+
+\noindent\textbf{Normalized Discounted Cumulative Gain (nDCG)}: This metric evaluates the quality of a ranked list of search results, considering both the relevance of the documents and their positions in the ranking.
+
+\noindent\textbf{Precision at k (P@k)}: This measure calculates the proportion of relevant documents among the top k retrieved documents for each query.
+
+\noindent\textbf{F-measure}: This measure is a single metric that combines precision and recall into a single score to evaluate the performance of a binary classification model. It is calculated as the harmonic mean of precision and recall, and it ranges from 0 to 1, where a higher value indicates better model performance.
+\subsection{Git Repository}
+The code and resources for our project are hosted in a Git repository, which is organized as follows:
+\begin{itemize}
+\item  \textbf{code/semicolon}: Contains the source code for the Indexer, Parser, Searcher, and other components of our search engine.
+\item  \textbf{code/OriginalData}: Includes the raw documents.
+\item  \textbf{code/ProcessedOutput}: Includes cleaned corpus used in our experiments.
+\item  \textbf{results/}: Stores the results of our experiments, such as the performance of our search engine on various evaluation measures.
+\item  \textbf{runs/}: Includes the runs produced by the developed search engine
+
+
+
+\end{itemize}
+The Git repository can be accessed at the following URL: [https://bitbucket.org/upd-dei-stud-prj/seupd2223-semicolon/src/master/]
+\subsection{Hardware}
+Our experiments were conducted using the following hardware setup:
+\begin{itemize}
+\item \textbf{Processor} : Apple Silicon M1
+\item \textbf{Memory} : 8GB
+\item \textbf{Storage} : 256GB
+\item  \textbf{Operating System} : MAC OS
+\end{itemize}
+\par This hardware configuration ensured that our experiments were performed efficiently, allowing for the rapid indexing and searching of documents in our test collections.
+
+In summary, our experimental setup provided a comprehensive evaluation of our search engine's performance across various information retrieval tasks, using industry-standard test collections and evaluation measures. The results of these experiments are discussed in the following section.
+
